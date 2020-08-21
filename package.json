@@ -1,0 +1,35 @@
+{
+  "name": "mustache.mjml",
+  "version": "1.0.0",
+  "description": "An email&html templating crossover",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eugenioclrc/mustache.mjml.git"
+  },
+  "keywords": [
+    "mjml",
+    "mustache",
+    "email",
+    "template"
+  ],
+  "author": "eugenioclrc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eugenioclrc/mustache.mjml/issues"
+  },
+  "homepage": "https://github.com/eugenioclrc/mustache.mjml#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^26.3.0",
+    "babel-preset-env": "^1.7.0",
+    "mjml": "^4.6.3",
+    "mustache": "^4.0.1"
+  },
+  "devDependencies": {
+    "jest": "^26.4.1"
+  }
+}
