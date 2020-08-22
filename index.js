@@ -27,17 +27,15 @@ export default function createTemplateFunction(mjmlTpl, translations = {}) {
     const translations = ret.translations[lang];
     // solo el portugues y el ingles es obligatorio, de lo contrario usa la
     // traduccion original
-    if (lang === 'pt' || lang === 'en') {
-      if (!translations) {
-        // console.error('No hay traducciones para ', lang);
-        throw new Error(`No hay traducciones para ${lang}`);
-        // return word;
-      }
-      if (!translations[word]) {
-        throw new Error(`No hay traducciones para ${word} en ${lang}`);
-        // console.error('No existe la tradiccion para ', word);
-        // return word;
-      }
+    if (!translations) {
+      // console.error('No hay traducciones para ', lang);
+      throw new Error(`No translation for dictionary ${lang}`);
+      // return word;
+    }
+    if (!translations[word]) {
+      throw new Error(`No translation for ${word} in ${lang}`);
+      // console.error('No existe la tradiccion para ', word);
+      // return word;
     }
 
     return (!translations || !translations[word]) ? word : translations[word];
@@ -46,7 +44,7 @@ export default function createTemplateFunction(mjmlTpl, translations = {}) {
   ret.template = (data, lang) => {
     const d = Object.assign({}, {
       i18n() {
-        return (t, r) => r(translate(t, lang));
+        return (t, r) => r(ret.translate(t, lang));
       }
     }, data);
     return Mustache.render(ret.minifiedHtml, d);

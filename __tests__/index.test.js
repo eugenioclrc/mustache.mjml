@@ -1,12 +1,16 @@
-// import mustacheMjml from '../index';
+import mustacheMjml from '../index';
 //
-// const mjml = `
-// <mjml></mjml>
-// `;
+const mjml = `<mjml></mjml>`;
 
-// console.log(mustacheMjml(mjml));
 
-test('if utils mocked automatically', () => {
-  // Public methods of `utils` are now mock functions
-  expect(true).toBeTruthy();
+test('if throws error on missing translations', () => {
+  const tpl = mustacheMjml(mjml);
+  tpl.minifiedHtml = '{{#i18n}}Hola{{/i18n}}';
+  tpl.translations = {
+    'es-cl': {
+
+    }
+  }
+  expect(() => { tpl.template({}, 'es-cl'); }).toThrow(/No translation for Hola in es-cl/);
+  expect(() => { tpl.template({}, 'es-mx'); }).toThrow(/No translation for dictionary es-mx/);
 })
