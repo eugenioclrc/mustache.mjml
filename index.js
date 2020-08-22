@@ -13,7 +13,7 @@ import Mustache from 'mustache';
  */
 export default function createTemplateFunction(mjmlTpl, translations = {}) {
   const { html, errors } = mjml2html(mjmlTpl, { beautify: true });
-  console.log('template errors', errors);
+  // console.log('template errors', errors);
 
   // const minifiedHtml = html.replace(/>\s+|\s+</g, (m) => ' ' + m.trim());
   const ret = {
@@ -21,6 +21,8 @@ export default function createTemplateFunction(mjmlTpl, translations = {}) {
     minifiedHtml: html.replace(/\s+/g, ' '),
     errors,
     translations,
+    errorOnMissingTranslation: true,
+    missingTranslations: {},
   };
 
   ret.translate = (word, lang) => {
@@ -29,13 +31,20 @@ export default function createTemplateFunction(mjmlTpl, translations = {}) {
     // traduccion original
     if (!translations) {
       // console.error('No hay traducciones para ', lang);
-      throw new Error(`No translation for dictionary ${lang}`);
+      if (ret.errorOnMissingTranslation) {
+        throw new Error(`No translation for dictionary ${lang}`);
+      }
+      ret.missingTranslations[lang] = ret.missingTranslations[lang] || {};
+      ret.translations[lang] = ret.translations[lang] || {};
       // return word;
     }
     if (!translations[word]) {
-      throw new Error(`No translation for ${word} in ${lang}`);
-      // console.error('No existe la tradiccion para ', word);
-      // return word;
+      if (ret.errorOnMissingTranslation) {
+        throw new Error(`No translation for ${word} in ${lang}`);
+      }
+      ret.missingTranslations[lang] = ret.missingTranslations[lang] || {};
+      ret.missingTranslations[lang][word] = '';
+      return word;
     }
 
     return (!translations || !translations[word]) ? word : translations[word];
