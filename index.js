@@ -26,7 +26,7 @@ export default function createTemplateFunction(mjmlTpl, translations = {}) {
   };
 
   ret.translate = (word, lang) => {
-    const translations = ret.translations[lang];
+    let translations = ret.translations[lang];
     // solo el portugues y el ingles es obligatorio, de lo contrario usa la
     // traduccion original
     if (!translations) {
@@ -35,7 +35,7 @@ export default function createTemplateFunction(mjmlTpl, translations = {}) {
         throw new Error(`No translation for dictionary ${lang}`);
       }
       ret.missingTranslations[lang] = ret.missingTranslations[lang] || {};
-      ret.translations[lang] = ret.translations[lang] || {};
+      translations = ret.translations[lang] || {};
       // return word;
     }
     if (!translations[word]) {
