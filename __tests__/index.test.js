@@ -23,8 +23,21 @@ test('if throws error on missing translations', () => {
 
 })
 
-
 test('basic render', () => {
+  const tpl = mustacheMjml(mjml);
+  tpl.minifiedHtml = 'Hello {{name}}, {{sum}}';
+
+  const data = {
+    name: 'World',
+    sum() {
+      return 2 + 2;
+    }
+  };
+
+  expect(tpl.template(data)).toBe('Hello World, 4');
+})
+
+test('basic i18n render', () => {
   const tpl = mustacheMjml(mjml);
   tpl.minifiedHtml = '{{#i18n}}Hello{{/i18n}}';
   tpl.translations = {
