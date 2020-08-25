@@ -1,4 +1,4 @@
-import mustacheMjml from '../dist/index';
+import mustacheMjml from '../';
 //
 const mjml = `<mjml></mjml>`;
 
