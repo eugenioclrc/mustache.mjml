@@ -1,6 +1,6 @@
 {
   "name": "mustache.mjml",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An email&html templating crossover",
   "main": "dist/index.js",
   "scripts": {
