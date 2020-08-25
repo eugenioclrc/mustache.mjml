@@ -2,8 +2,9 @@
   "name": "mustache.mjml",
   "version": "1.0.2",
   "description": "An email&html templating crossover",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "prepublish": "npx babel index.js --out-dir dist",
     "test": "jest"
   },
   "repository": {
