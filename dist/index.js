@@ -1,10 +1,5 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = createTemplateFunction;
-
 var _mjml = _interopRequireDefault(require("mjml"));
 
 var _mustache = _interopRequireDefault(require("mustache"));
@@ -21,7 +16,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
    en: { 'hola {{ name }}': 'hello {{ name }}' }
  })
  */
-function createTemplateFunction(mjmlTpl) {
+module.exports = function createTemplateFunction(mjmlTpl) {
   var translations = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   var _mjml2html = (0, _mjml.default)(mjmlTpl, {
@@ -82,4 +77,4 @@ function createTemplateFunction(mjmlTpl) {
   };
 
   return ret;
-}
+};

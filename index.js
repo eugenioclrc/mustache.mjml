@@ -11,7 +11,7 @@ import Mustache from 'mustache';
    en: { 'hola {{ name }}': 'hello {{ name }}' }
  })
  */
-export default function createTemplateFunction(mjmlTpl, translations = {}) {
+module.exports = function createTemplateFunction(mjmlTpl, translations = {}) {
   const { html, errors } = mjml2html(mjmlTpl, { beautify: true });
   // console.log('template errors', errors);
 

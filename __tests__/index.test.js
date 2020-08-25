@@ -1,4 +1,4 @@
-import mustacheMjml from '../index';
+import mustacheMjml from '../dist/index';
 //
 const mjml = `<mjml></mjml>`;
 
@@ -35,7 +35,7 @@ test('basic render', () => {
   };
 
   expect(tpl.template(data)).toBe('Hello World, 4');
-})
+});
 
 test('basic i18n render', () => {
   const tpl = mustacheMjml(mjml);
