@@ -31,19 +31,19 @@ export default function createTemplateFunction(mjmlTpl, translations = {}) {
     // traduccion original
     if (!translations) {
       // console.error('No hay traducciones para ', lang);
+      ret.missingTranslations[lang] = ret.missingTranslations[lang] || {};
+      translations = ret.translations[lang] || {};
       if (ret.errorOnMissingTranslation) {
         throw new Error(`No translation for dictionary ${lang}`);
       }
-      ret.missingTranslations[lang] = ret.missingTranslations[lang] || {};
-      translations = ret.translations[lang] || {};
       // return word;
     }
     if (!translations[word]) {
+      ret.missingTranslations[lang] = ret.missingTranslations[lang] || {};
+      ret.missingTranslations[lang][word] = '';
       if (ret.errorOnMissingTranslation) {
         throw new Error(`No translation for ${word} in ${lang}`);
       }
-      ret.missingTranslations[lang] = ret.missingTranslations[lang] || {};
-      ret.missingTranslations[lang][word] = '';
       return word;
     }
 

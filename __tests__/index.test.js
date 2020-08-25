@@ -8,13 +8,19 @@ test('if throws error on missing translations', () => {
   tpl.minifiedHtml = '{{#i18n}}Hello{{/i18n}}';
   tpl.translations = { 'es-cl': {} };
 
+
   tpl.errorOnMissingTranslation = true;
   expect(() => { tpl.template({}, 'es-cl'); }).toThrow(/No translation for Hello in es-cl/);
   expect(() => { tpl.template({}, 'es-mx'); }).toThrow(/No translation for dictionary es-mx/);
 
   tpl.errorOnMissingTranslation = false;
+  tpl.missingTranslations = {};
   expect(() => { tpl.template({}, 'es-cl'); }).not.toThrow(/No translation for Hello in es-cl/);
   expect(() => { tpl.template({}, 'es-mx'); }).not.toThrow(/No translation for dictionary es-mx/);
+
+  const expectedMissingTranslations = { 'es-cl': { Hello: '' }, 'es-mx': { Hello: '' } };
+  expect(tpl.missingTranslations).toEqual(expect.objectContaining(expectedMissingTranslations));
+
 })
 
 
