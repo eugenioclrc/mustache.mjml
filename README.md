@@ -29,7 +29,7 @@
 You can get Mustache.mjml via [npm](http://npmjs.com).
 
 ```bash
-$ npm install mustache-mjml --save
+$ npm install mustache.mjml --save
 ```
 
 
@@ -38,7 +38,7 @@ $ npm install mustache-mjml --save
 Below is a quick example how to use mustache.mjml:
 
 ```js
-import mustacheMjml from 'mustache-mjml';
+import mustacheMjml from 'mustache.mjml';
 
 const { template, errors } = mustacheMjml(`
   <mjml>
@@ -66,4 +66,4 @@ const view = {
 const output = template(view);
 ```
 
-### loops
+### Loops
