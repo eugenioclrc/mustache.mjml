@@ -32,6 +32,7 @@ module.exports = function createTemplateFunction(mjmlTpl, translations = {}) {
     if (!translations) {
       // console.error('No hay traducciones para ', lang);
       ret.missingTranslations[lang] = ret.missingTranslations[lang] || {};
+      ret.translations[lang] = ret.translations[lang] || {};
       translations = ret.translations[lang] || {};
       if (ret.errorOnMissingTranslation) {
         throw new Error(`No translation for dictionary ${lang}`);
