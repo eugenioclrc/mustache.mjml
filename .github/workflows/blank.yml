@@ -25,9 +25,12 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
+    - name: Jest Annotations & Coverage
+      uses: mattallty/jest-github-action@v1.0.3
+
     # Runs a single command using the runners shell
-    - name: Run Jest
-      run: npm run test
+    #- name: Run Jest
+    #  run: npm run test
       #with:
       #  jestArgs: path/to/my.test.js
 
