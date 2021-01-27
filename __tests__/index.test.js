@@ -1,11 +1,22 @@
-import mustacheMjml from '../';
+const mustacheMjml = require('../');
 //
-const mjml = `<mjml></mjml>`;
+const mjml = `
+  <mjml>
+    <mj-body>
+      <mj-section>
+        <mj-column>
+          <mj-text>
+            Hello {{name}}, {{sum}}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-body>
+  </mjml>`;
 
 
 test('basic render', () => {
   const tpl = mustacheMjml(mjml);
-  tpl.minifiedHtml = 'Hello {{name}}, {{sum}}';
+  // tpl.minifiedHtml = 'Hello {{name}}, {{sum}}';
 
   const data = {
     name: 'World',
@@ -14,7 +25,7 @@ test('basic render', () => {
     }
   };
 
-  expect(tpl.template(data)).toBe('Hello World, 4');
+  expect(tpl.template(data)).toMatch(/Hello World, 4/);
 });
 
 describe("i18n", () => {

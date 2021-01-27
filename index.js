@@ -1,5 +1,5 @@
-import mjml2html from 'mjml';
-import Mustache from 'mustache';
+const mjml2html = require('mjml');
+const Mustache = require('mustache');
 
 /**
  * createTemplate recibe un string con codiggo MJML, y un diccionario de traducciones
@@ -12,7 +12,7 @@ import Mustache from 'mustache';
  })
  */
 module.exports = function createTemplateFunction(mjmlTpl, translations = {}) {
-  const { html, errors } = mjml2html(mjmlTpl, { beautify: true });
+  const { html, errors } = mjml2html(mjmlTpl);
   // console.log('template errors', errors);
 
   // const minifiedHtml = html.replace(/>\s+|\s+</g, (m) => ' ' + m.trim());
